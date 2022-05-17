@@ -1,0 +1,75 @@
+.formulario {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  margin-top: 8%;
+  font-family: Inter;
+  font-weight: 400;
+}
+
+.formulario--login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 360px;
+  width: 550px;
+  background-color: #ffffff;
+  box-shadow: 1px 2px 3px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+
+.formulario--login h2 {
+  font-family: Poppins;
+  font-weight: 500;
+  color: #000000;
+  margin: 0 20px 20px 20px;
+}
+
+.login--form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input {
+  width: 400px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #f8f9fa;
+  margin-bottom: 1rem;
+}
+
+input::placeholder {
+  color: #868e96;
+}
+
+.login--form span {
+  font-size: 12px;
+  font-weight: 600;
+  color: #868e96;
+  margin-bottom: 10px;
+}
+
+.login--form span a {
+  font-size: 12px;
+  font-weight: 600;
+  color: #868e96;
+}
+
+#cadastro {
+  margin-top: 22px;
+}
+
+.login--Logar {
+  font-size: 18px;
+  color: white;
+  padding: 8px;
+  border-radius: 30px;
+  width: 200px;
+  border: none;
+  cursor: pointer;
+  background-color: #ff2253;
+}
