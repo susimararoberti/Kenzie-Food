@@ -1,12 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./src/Style/reset.css">
+    <link rel="stylesheet" href="./src/Style/index.css">
     <title>Document</title>
-  </head>
-  <body>
-    <script type="module" src="./src/Js/Database/script_Testes.js"></script>
-  </body>
+</head>
+<body>
+    <section>
+      
+        <button id="todos">todos</button>
+        <button id="panificadora">panificadora</button>
+        <button id="frutas">frutas</button>
+        <button id="bebidas">bebidas</button>
+    </section>
+<main>
+    <section id="vitrine"></section>
+    <section id="carrinho">
+        <div id="topoCarrinho">&#128722; Carrinho</div>
+        <div id="copoDoCarrinho"></div>
+    </div>
+
+</main>
+<script type="module" src="./src/Js/Controller/indexControler.js"></script>
+<script type="module" src="./src/Js/Database/Api_Produtos.js"></script>
+<script type="module" src="./src/Js/Models/listarProdutos.js"></script>
+</body>
 </html>
