@@ -1,54 +1,61 @@
 import  ListarProdutos  from "../Models/listarProdutos.js";
 import  Produtos  from "../Database/Api_Produtos.js";
 
-async function mostrarProdutos(){
-    if(localStorage.getItem("Token") !== ""){
-        let dataPrivada = await Produtos.mostrarProdutosPrivados()
-    ListarProdutos.listarPosts(dataPrivada)
+const dadosDosCards = await Produtos.mostrarProdutosPublicos()
+const dataPrivada = await Produtos.mostrarProdutosPrivados()
 
+async function mostrarProdutos(filto){
+let arr = []
+    if(filto !== undefined){
+        for (let i = 0; i < dadosDosCards.length; i++) {
+           if(dadosDosCards[i].categoria == filto){
+                arr.push(dadosDosCards[i])
+           }
+        }
+
+        for (let i = 0; i < dataPrivada.length; i++) {
+            if(dataPrivada[i].categoria == filto){
+                 arr.push(dataPrivada[i])
+            }
+         }
+
+    ListarProdutos.listarPosts(arr)
+
+    return arr
     }
-    let data = await Produtos.mostrarProdutosPublicos()
 
-    ListarProdutos.listarPosts(data)
+    if(localStorage.getItem("Token") !== ""){
+    ListarProdutos.listarPosts(dataPrivada)
+    }
+    ListarProdutos.listarPosts(dadosDosCards)
 
 }
+
+// console.log(dadosDosCards)
 
 mostrarProdutos()
 
-const produtos = await Produtos.mostrarProdutosPublicos()
+const btnTodos = document.getElementById("Todos")
+const btnPanificadora = document.getElementById("Panificadora")
+const btnFrutas = document.getElementById("Frutas")
+const btnBebidas = document.getElementById("Bebidas")
 
-const buscar = document.getElementById("buscar")
+btnTodos.addEventListener("click", filtrar)
+btnPanificadora.addEventListener("click", filtrar)
+btnFrutas.addEventListener("click", filtrar)
+btnBebidas.addEventListener("click", filtrar)
 
-const produtosPrivados = await Produtos.mostrarProdutosPrivados()
+function filtrar (event){
+    event.target.style.backgroundColor = "blue";
+    const item = event.target.id
+    if(item !== "Todos"){
+    vitrine.innerHTML = ""
+        mostrarProdutos(item)
+    }
+    else{
+    vitrine.innerHTML = ""
+        mostrarProdutos()
+    }
 
-console.log(produtos)
-        
-function buscarProdutos(){
-    vitrine.innerHTML = "" 
-    const dataBusca = []
-
-    if(localStorage.getItem("Token" == "")){
-        for(let i = 0; i < produtos.length; i++){
-            if (produtos[i].nome.toLowerCase().includes(buscar.value.toLowerCase()) == true || produtos[i].categoria.toLowerCase().includes(buscar.value.toLowerCase) == true){
-                dataBusca.push(produtos[i])
-            }
-        }
-        }else{
-            
-            for(let i = 0; i < produtos.length; i++){
-                if (produtos[i].nome.toLowerCase().includes(buscar.value.toLowerCase()) == true || produtos[i].categoria.toLowerCase().includes(buscar.value.toLowerCase) == true){
-                    console.log("entrou no if")
-                    dataBusca.push(produtos[i])
-                }
-            }for(let i = 0; i < produtosPrivados.length; i++){
-                if (produtosPrivados[i].nome.toLowerCase().includes(buscar.value.toLowerCase()) == true || produtosPrivados[i].categoria.toLowerCase().includes(buscar.value.toLowerCase) == true){
-                    dataBusca.push(produtos[i])
-                }
-            }
-
-        }
-        ListarProdutos.listarPosts(dataBusca)
-        buscar.addEventListener("keypress", buscarProdutos)
+    return item
 }
-
-buscarProdutos()
