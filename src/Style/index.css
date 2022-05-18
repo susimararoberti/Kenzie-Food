@@ -5,61 +5,59 @@
     font-size: 14px;
 }
 
-.cardsClass{
-    height: 397px;
-    width: 303px;
-    background-color: aliceblue;
-    margin: 10px;
+.cardsClass {
+  height: 397px;
+  width: 303px;
+  background-color: aliceblue;
+  margin: 10px;
 }
 
-#vitrine{
-    margin-left: 116px;
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 1000px;
+#vitrine {
+  margin-left: 116px;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1000px;
 }
 
-.imgDaVitrine{
-    width: 300px;
-    height: 200px;
+.imgDaVitrine {
+  width: 300px;
+  height: 200px;
 }
 
-.divInferiorBtnPreco{
-    /* margin-top:27px ; */
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.divInferiorBtnPreco {
+  /* margin-top:27px ; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.btnDeConpra{
-    background-color: #E4F7EF;
-    border-radius: 100%;
-    width: 38px;
-    height: 38px;
+.btnDeConpra {
+  background-color: #e4f7ef;
+  border-radius: 100%;
+  width: 38px;
+  height: 38px;
 }
 
-main{
-    display:flex ;
+main {
+  display: flex;
 }
 
-#topoCarrinho{
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    width: 320px;
-    height: 56px;
-    background-color: #FF2253;
+#topoCarrinho {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  width: 320px;
+  height: 56px;
+  background-color: #ff2253;
 }
 
-#copoDoCarrinho{
-    width: 320px;
-    height: 296px;
-    background-color: green;
+#copoDoCarrinho {
+  width: 320px;
+  height: 296px;
+  background-color: #f8f9fa;
 }
-
-/* botoes Header */
 
 .btnHeder{
     background-color: #FF2253;
