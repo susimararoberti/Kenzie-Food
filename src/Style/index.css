@@ -42,6 +42,7 @@ main{
     display:flex ;
 }
 
+/* carrinho */
 #topoCarrinho{
     display: flex;
     flex-direction: column-reverse;
@@ -53,10 +54,26 @@ main{
     background-color: #FF2253;
 }
 
-#copoDoCarrinho{
+#corpoDoCarrinho{
     width: 320px;
     height: 296px;
     background-color: green;
+}
+
+.imgCarrinho{
+    width: 70px;
+    height: 70px;
+}
+
+.divItenCarrinho{
+    background-color: #868E96;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.buttonDeletar{
+    font-size: 30px;
+    cursor: pointer;
 }
 
 /* botoes Header */

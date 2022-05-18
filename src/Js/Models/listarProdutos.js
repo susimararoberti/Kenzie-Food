@@ -1,8 +1,10 @@
+import Carrinho from "../Database/Api_Carrinho.js";
 class ListarProdutos {
     static async listarPosts(data){
 let arr = []
-console.log(data[0].id)
+// console.log(data[0].id)
         for (let i = 0; i < data.length; i++) {
+            // console.log(data[i].id)
             arr.push(data[i])
             const vitrine = document.getElementById("vitrine")
             const gerarCard = document.createElement("div")
@@ -17,6 +19,15 @@ console.log(data[0].id)
             const divInferiorBtnPreco = document.createElement("div")
             const btnConpra = document.createElement("button")
             btnConpra.classList = "btnDeConpra"
+            btnConpra.id = data[i].id
+            btnConpra.addEventListener("click",function(){
+                Carrinho.adicionarAoCarrinho(
+                    {
+                        product_id: btnConpra.id
+                    }
+                )
+            })
+            
             divInferiorBtnPreco.classList = "divInferiorBtnPreco"
 
             img.src = data[i].imagem

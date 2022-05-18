@@ -1,5 +1,6 @@
 import  ListarProdutos  from "../Models/listarProdutos.js";
 import  Produtos  from "../Database/Api_Produtos.js";
+import Carrinho from "../Database/Api_Carrinho.js";
 
 const dadosDosCards = await Produtos.mostrarProdutosPublicos()
 const dataPrivada = await Produtos.mostrarProdutosPrivados()
@@ -59,3 +60,44 @@ function filtrar (event){
 
     return item
 }
+
+let itensCarrinho =  await Carrinho.listarCarrinho()
+
+
+async function mostrarCarrinhoLogado(){
+const corpoDoCarrinho = document.getElementById("corpoDoCarrinho")
+corpoDoCarrinho.innerHTML = ""
+for (let i = 0; i < itensCarrinho.length; i++) {
+    console.log(itensCarrinho[i])
+
+    const divItenCarrinho = document.createElement("div")
+    divItenCarrinho.classList = "divItenCarrinho"
+    const divItenCarrinhointerenal = document.createElement("div")
+    // divItenCarrinhointerenal.classList = "divItenCarrinhointerenal"
+    const img = document.createElement("img")
+    img.classList = "imgCarrinho"
+    const h3 = document.createElement("h3")
+    const preco = document.createElement("p")
+    const p = document.createElement("p")
+    const buttonDeletar = document.createElement("p")
+    buttonDeletar.id = ""
+    buttonDeletar.classList = "buttonDeletar"
+    	
+    buttonDeletar.innerHTML = "&#128465;"
+    preco.innerText = itensCarrinho[i].products.preco
+    h3.innerText = itensCarrinho[i].products.nome
+    img.src = itensCarrinho[i].products.imagem
+
+    corpoDoCarrinho.appendChild(divItenCarrinho)
+    divItenCarrinho.appendChild(divItenCarrinhointerenal)
+    divItenCarrinho.appendChild(img)
+    divItenCarrinho.appendChild(h3)
+    divItenCarrinho.appendChild(p)
+    divItenCarrinho.appendChild(preco)
+    divItenCarrinho.appendChild(buttonDeletar)
+
+}
+
+}
+
+mostrarCarrinhoLogado()
