@@ -1,12 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../Style/reset.css" />
+    <link rel="stylesheet" href="../Style/dashboard.css" />
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <header>
+      <div class="header--logo">
+        <h1>Kenzie</h1>
+        <p>Food</p>
+      </div>
+      <div class="header--pesquisa">
+        <div class="pesquisa--input">
+          <img
+            class="input--img"
+            src="../images/pesquisa (2).png"
+            alt="pesquisa"
+          />
+          <input type="text" placeholder="Pesquisar por produto" />
+        </div>
+        <button class="pesquisa--button" type="button">
+          <img class="button--img" src="../images/user.png" alt="user" />
+        </button>
+      </div>
+    </header>
+    <main>
+      <section class="navegacao">
+        <nav class="navegacao--categorias">
+          <button class="categorias--selecionado" id="todos">Todos</button>
+          <button class="categorias categorias--panificadora">
+            <img
+              class="panificadora--img"
+              src="../images/pao-.png"
+              alt="Pão"
+            />Panificadora
+          </button>
+          <button class="categorias categorias--frutas">
+            <img
+              class="frutas--img"
+              src="../images/frutas-.png"
+              alt="Frutas"
+            />Frutas
+          </button>
+          <button class="categorias categorias--bebidas">
+            <img
+              class="bebidas--img"
+              src="../images/bebida.png"
+              alt="Bebida"
+            />Bebidas
+          </button>
+        </nav>
+        <div class="navegacao--adicionarProduto">
+          <button class="adicionarProduto--button">
+            Adicionar novo produto
+          </button>
+        </div>
+      </section>
+      <section class="produtos">
+        <div class="produtos--tabela">
+          <h3 class="tabela--coluna1">Produto</h3>
+          <h3 class="tabela--coluna2">Categoria</h3>
+          <h3 class="tabela--coluna3">Descrição</h3>
+          <h3 class="tabela--coluna4">Ações</h3>
+        </div>
+
+        <ul class="lista">
+          <li class="lista--itens">
+            <div class="itens--nome">
+              <img
+                class="lista--img"
+                src="../images/panqueca.jpg"
+                alt="Panqueca de Frango"
+              />
+              <p class="lista--p">Panqueca de Frango</p>
+            </div>
+            <div class="itens--categoria"><span>Panificadora</span></div>
+            <div class="itens--descricao">
+              <p>Deliciosa panqueca com recheio de frango cremoso...</p>
+            </div>
+            <div class="itens--botoes">
+              <button class="botoes--acao">
+                <img src="../images/edit.png" alt="Editar" />
+              </button>
+              <button class="botoes--acao">
+                <img src="../images/delete.png" alt="Deletar" />
+              </button>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+  </body>
 </html>
