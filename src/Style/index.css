@@ -1,14 +1,8 @@
-* {
-  margin: 0px;
-  border: 0px;
-  padding: 0px;
-}
-
-.paragrafos {
-  margin-top: 16px;
-  color: #868e96;
-  margin-bottom: 7px;
-  font-size: 14px;
+.paragrafos{
+    margin-top: 16px;
+    color: #868E96;
+    margin-bottom: 7px;
+    font-size: 14px;
 }
 
 .cardsClass {
@@ -63,4 +57,12 @@ main {
   width: 320px;
   height: 296px;
   background-color: #f8f9fa;
+}
+
+.btnHeder{
+    background-color: #FF2253;
+    height: 40px;
+    width: 80px;
+    margin-right: 28px;
+    border-radius: 100%;
 }
