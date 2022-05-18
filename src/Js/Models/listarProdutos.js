@@ -1,4 +1,6 @@
 import Carrinho from "../Database/Api_Carrinho.js";
+import MostrarCarrinhoLogado from "../Controller/indexControler.js"
+
 class ListarProdutos {
     static async listarPosts(data){
 let arr = []
@@ -20,12 +22,14 @@ let arr = []
             const btnConpra = document.createElement("button")
             btnConpra.classList = "btnDeConpra"
             btnConpra.id = data[i].id
-            btnConpra.addEventListener("click",function(){
-                Carrinho.adicionarAoCarrinho(
+            btnConpra.addEventListener("click", async function(){
+                await Carrinho.adicionarAoCarrinho(
                     {
                         product_id: btnConpra.id
                     }
                 )
+                window.location.reload()
+            // MostrarCarrinhoLogado.mostrarCarrinhoLogado()
             })
             
             divInferiorBtnPreco.classList = "divInferiorBtnPreco"
@@ -53,5 +57,6 @@ let arr = []
     }   
     
 }
+
 
 export default ListarProdutos

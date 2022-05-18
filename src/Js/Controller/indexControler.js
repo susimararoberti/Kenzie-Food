@@ -20,19 +20,20 @@ let arr = []
             }
          }
 
-    ListarProdutos.listarPosts(arr)
+    await ListarProdutos.listarPosts(arr)
 
     return arr
     }
 
     if(localStorage.getItem("Token") !== ""){
-    ListarProdutos.listarPosts(dataPrivada)
+    await ListarProdutos.listarPosts(dataPrivada)
     }
-    ListarProdutos.listarPosts(dadosDosCards)
+    await ListarProdutos.listarPosts(dadosDosCards)
 
 }
 
 // console.log(dadosDosCards)
+
 
 mostrarProdutos()
 
@@ -61,43 +62,133 @@ function filtrar (event){
     return item
 }
 
-let itensCarrinho =  await Carrinho.listarCarrinho()
+let itensCarrinho = await Carrinho.listarCarrinho()
+
+class MostrarCarrinhoLogado{
+    static async mostrarCarrinhoLogado(){
+        const corpoDoCarrinho = document.getElementById("corpoDoCarrinho")
+        let arrDequantidade = []
+        let arrPrecoTotal = 0
+        // console.log(corpoDoCarrinho)
+        // console.log(itensCarrinho[0].quantity)
+        corpoDoCarrinho.innerHTML = ""
+        for (let i = 0; i < itensCarrinho.length; i++) {
+
+            arrDequantidade.push(itensCarrinho[i].quantity)
+            
+            for (let j = 0; j < itensCarrinho[i].quantity; j++) {
+                arrPrecoTotal += itensCarrinho[i].products.preco
+            }
+    
+            const divItenCarrinho = document.createElement("li")
+            divItenCarrinho.classList = "divItenCarrinho"
+            const divItenCarrinhointerenal = document.createElement("div")
+            // divItenCarrinhointerenal.classList = "divItenCarrinhointerenal"
+            const img = document.createElement("img")
+            img.classList = "imgCarrinho"
+            const h3 = document.createElement("h3")
+            const preco = document.createElement("p")
+            const p = document.createElement("p")
+            const buttonDeletar = document.createElement("p")
+            buttonDeletar.classList = "buttonDeletar"
+            buttonDeletar.value = itensCarrinho[i].products.id
+            buttonDeletar.addEventListener("click",async () =>{
+                await Carrinho.removerDoCarrinho(buttonDeletar.value)
+                window.location.reload()
+            })
+            const quantidade = document.createElement("p")
+
+            
+            quantidade.innerHTML = itensCarrinho[i].quantity
+            buttonDeletar.innerHTML = "&#128465;"
+            preco.innerText = "R$ " + itensCarrinho[i].products.preco
+            h3.innerText = itensCarrinho[i].products.nome
+            img.src = itensCarrinho[i].products.imagem
+        
+
+            corpoDoCarrinho.appendChild(divItenCarrinho)
+            divItenCarrinho.appendChild(divItenCarrinhointerenal)
+            divItenCarrinho.appendChild(img)
+            divItenCarrinho.appendChild(h3)
+            divItenCarrinho.appendChild(p)
+            divItenCarrinho.appendChild(preco)
+            divItenCarrinho.appendChild(quantidade)
+            divItenCarrinho.appendChild(buttonDeletar)
+        
+        }
+
+        // console.log(arrPrecoTotal)
+
+        let quantidadeTotal = arrDequantidade.reduce((a,b)=>{
+            return a+b
+        })
+
+        await MostrarCarrinhoLogado.atualizarPrecoCarrinhoLogado(quantidadeTotal, arrPrecoTotal)
+
+        }
+
+        static async atualizarPrecoCarrinhoLogado(quantidade, preco){
+        const parteDeBaixoDoCarrinho = document.getElementById("parteDeBaixoDoCarrinho")
+
+        const quantidadeTotal = document.createElement("p")
+        const precoTotal = document.createElement("p")
+
+        quantidadeTotal.innerText = "Quantidade total = " + quantidade
+        precoTotal.innerText = "Preço total = R$" + preco 
+
+        parteDeBaixoDoCarrinho.appendChild(quantidadeTotal)
+        parteDeBaixoDoCarrinho.appendChild(precoTotal)
 
 
-async function mostrarCarrinhoLogado(){
-const corpoDoCarrinho = document.getElementById("corpoDoCarrinho")
-corpoDoCarrinho.innerHTML = ""
-for (let i = 0; i < itensCarrinho.length; i++) {
-    console.log(itensCarrinho[i])
+        }
+        
+}
 
-    const divItenCarrinho = document.createElement("div")
-    divItenCarrinho.classList = "divItenCarrinho"
-    const divItenCarrinhointerenal = document.createElement("div")
-    // divItenCarrinhointerenal.classList = "divItenCarrinhointerenal"
-    const img = document.createElement("img")
-    img.classList = "imgCarrinho"
-    const h3 = document.createElement("h3")
-    const preco = document.createElement("p")
-    const p = document.createElement("p")
-    const buttonDeletar = document.createElement("p")
-    buttonDeletar.id = ""
-    buttonDeletar.classList = "buttonDeletar"
+// async function mostrarCarrinhoLogado(){
+// const corpoDoCarrinho = document.getElementById("corpoDoCarrinho")
+// corpoDoCarrinho.innerHTML = ""
+// for (let i = 0; i < itensCarrinho.length; i++) {
+//     // console.log(itensCarrinho[i].products.id)
+
+//     const divItenCarrinho = document.createElement("div")
+//     divItenCarrinho.classList = "divItenCarrinho"
+//     const divItenCarrinhointerenal = document.createElement("div")
+//     // divItenCarrinhointerenal.classList = "divItenCarrinhointerenal"
+//     const img = document.createElement("img")
+//     img.classList = "imgCarrinho"
+//     const h3 = document.createElement("h3")
+//     const preco = document.createElement("p")
+//     const p = document.createElement("p")
+//     const buttonDeletar = document.createElement("p")
+//     buttonDeletar.classList = "buttonDeletar"
+//     buttonDeletar.value = itensCarrinho[i].products.id
+//     buttonDeletar.addEventListener("click",() =>{
+//         Carrinho.removerDoCarrinho(buttonDeletar.value)
+//         divItenCarrinho.innerHTML = ""
+        
+//     })
     	
-    buttonDeletar.innerHTML = "&#128465;"
-    preco.innerText = itensCarrinho[i].products.preco
-    h3.innerText = itensCarrinho[i].products.nome
-    img.src = itensCarrinho[i].products.imagem
+//     buttonDeletar.innerHTML = "&#128465;"
+//     preco.innerText = itensCarrinho[i].products.preco
+//     h3.innerText = itensCarrinho[i].products.nome
+//     img.src = itensCarrinho[i].products.imagem
 
-    corpoDoCarrinho.appendChild(divItenCarrinho)
-    divItenCarrinho.appendChild(divItenCarrinhointerenal)
-    divItenCarrinho.appendChild(img)
-    divItenCarrinho.appendChild(h3)
-    divItenCarrinho.appendChild(p)
-    divItenCarrinho.appendChild(preco)
-    divItenCarrinho.appendChild(buttonDeletar)
+//     corpoDoCarrinho.appendChild(divItenCarrinho)
+//     divItenCarrinho.appendChild(divItenCarrinhointerenal)
+//     divItenCarrinho.appendChild(img)
+//     divItenCarrinho.appendChild(h3)
+//     divItenCarrinho.appendChild(p)
+//     divItenCarrinho.appendChild(preco)
+//     divItenCarrinho.appendChild(buttonDeletar)
 
-}
+// }
 
-}
+// }
 
-mostrarCarrinhoLogado()
+
+
+
+
+MostrarCarrinhoLogado.mostrarCarrinhoLogado()
+
+export default MostrarCarrinhoLogado

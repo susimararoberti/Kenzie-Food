@@ -31,7 +31,7 @@ class Carrinho {
     .then((resposta) => resposta.json())
     .then((resposta) => resposta)
     .catch((error) => console.error(error));
-console.log(novo)
+// console.log(novo)
 // console.log(token)
     return novo;
   }
