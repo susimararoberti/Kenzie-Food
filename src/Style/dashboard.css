@@ -64,17 +64,26 @@ header {
   width: 16px;
   height: 16px;
 }
+
 .pesquisa--button {
-  border-radius: 50px;
+  border-radius: 50%;
   width: 35px;
   color: #c4c4c4;
   border: none;
   padding: 1px 0;
+  margin-left: 10px;
 }
 
-.button--img {
-  width: 25px;
+.button--img--home {
+  width: 35px;
   height: 25px;
+  margin-top: 2px;
+  position: relative;
+}
+
+.button--img--logout {
+  width: 26px;
+  height: 26px;
   margin-top: 2px;
   position: relative;
 }

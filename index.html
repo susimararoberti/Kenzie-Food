@@ -1,30 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./src/Style/reset.css">
-    <link rel="stylesheet" href="./src/Style/index.css">
-    <title>Document</title>
-</head>
-<body>
-    <section>
-        <button class="btnHeder" id="Todos">Todos</button>
-        <button class="btnHeder" id="Panificadora">Panificadora</button>
-        <button class="btnHeder" id="Frutas">Frutas</button>
-        <button class="btnHeder" id="Bebidas">Bebidas</button>
-    </section>
-<main>
-    <section id="vitrine"></section>
-    <section id="carrinho">
-        <div id="topoCarrinho">&#128722; Carrinho</div>
-        <div id="copoDoCarrinho"></div>
-    </div>
-
-</main>
-<script type="module" src="./src/Js/Controller/indexControler.js"></script>
-<script type="module" src="./src/Js/Database/Api_Produtos.js"></script>
-<script type="module" src="./src/Js/Models/listarProdutos.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./src/Style/reset.css" />
+    <link rel="stylesheet" href="./src/Style/index.css" />
+    <title>Home</title>
+  </head>
+  <body>
+    <header>
+      <div class="header--logo">
+        <h1>Kenzie</h1>
+        <p>Food</p>
+      </div>
+      <div class="header--pesquisa">
+        <div class="pesquisa--input">
+          <img
+            class="input--img"
+            src="./src/images/pesquisa (2).png"
+            alt="pesquisa"
+          />
+          <input id="buscar" type="text" placeholder="Pesquisar por produto" />
+        </div>
+        <button id="Login" class="pesquisa--button" type="button">
+          <img
+            class="button--img--login"
+            src="./src/images/user.png"
+            alt="Login"
+          />
+        </button>
+        <button id="Logout" class="pesquisa--button" type="button">
+          <img
+            class="button--img--logout"
+            src="./src/images/logout.png"
+            alt="Logout"
+          />
+        </button>
+      </div>
+    </header>
+    <main>
+      <section class="navegacao">
+        <nav id="categorias" class="navegacao--categorias">
+          <button class="categorias--selecionado" id="Todos">Todos</button>
+          <button class="categorias categorias--panificadora" id="Panificadora">
+            <img
+              class="panificadora--img"
+              src="./src/images/pao-.png"
+              alt="Pão"
+            />Panificadora
+          </button>
+          <button class="categorias categorias--frutas" id="Frutas">
+            <img
+              class="frutas--img"
+              src="./src/images/frutas-.png"
+              alt="Frutas"
+            />Frutas
+          </button>
+          <button class="categorias categorias--bebidas" id="Bebidas">
+            <img
+              class="bebidas--img"
+              src="./src/images/bebida.png"
+              alt="Bebida"
+            />Bebidas
+          </button>
+        </nav>
+      </section>
+      <section class="pagina">
+        <section id="vitrine"></section>
+        <aside class="lateral">
+          <section id="carrinho" class="carrinho">
+            <div id="topoCarrinho" class="carrinho--topo">
+              &#128722; Carrinho
+            </div>
+            <div id="corpoDoCarrinho" class="carrinho--corpo"></div>
+            <div id="parteDeBaixoDoCarrinho" class="carrinho--footer"></div>
+          </section>
+        </aside>
+      </section>
+    </main>
+    <script type="module" src="./src/Js/Controller/indexControler.js"></script>
+    <script type="module" src="./src/Js/Database/Api_Produtos.js"></script>
+    <script type="module" src="./src/Js/Models/listarProdutos.js"></script>
+  </body>
 </html>
