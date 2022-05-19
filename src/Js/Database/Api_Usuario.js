@@ -18,7 +18,6 @@ class Usuario {
   }
 
   static async logarUsuario(dados) {
-    debugger;
     const URL = `${this.baseURL}/auth/login`;
     await fetch(URL, {
       method: "POST",
