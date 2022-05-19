@@ -2,10 +2,13 @@ import Produtos  from "../Database/Api_Produtos.js"
 
 const produtosPrivados = await Produtos.mostrarProdutosPrivados()
 
-const ul = document.querySelector("lista")
+const ul = document.getElementById("ul")
 
 class Dashboard {
     static inicializarTemplate(data){
+
+     
+
         for (let i = 0; i < data.length; i++){
             const  li = document.createElement("li")
             const  div = document.createElement("div")
@@ -36,7 +39,21 @@ class Dashboard {
             editar.classList.add("botoes--acao")
             editarImg.src = "../images/edit.png"
             deletar.classList.add("botoes--acao")
+            deletar.id = data[i].id
             deletarImg.src = "../images/delete.png"
+
+            deletar.addEventListener("click", function abrirModal() {
+                console.log("deletar")
+                const modal = document.getElementById("modal--deletar")
+                const modalDeletar = document.getElementById("modal--botao--sim")
+                console.log(modal)
+
+                modal.display = "flex flex"
+                        modalDeletar.addEventListener("click",function deletarPeloModal(){
+                        Produtos.deletarProduto(deletar.id)
+                     })
+                }
+            )
 
             li.appendChild(div)
             div.appendChild(img)
@@ -53,7 +70,14 @@ class Dashboard {
             ul.appendChild(li)
         }
     }
+
+    /*static deletarProduto(event){
+        const id = event.target.id
+        Produtos.deletarProduto(id)
+    }*/
 }
+
+Dashboard.inicializarTemplate(produtosPrivados)
 
 
 
