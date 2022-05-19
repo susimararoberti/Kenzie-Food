@@ -14,10 +14,7 @@ const login = {
   password: "123",
 };
 
- async function main() {
- const novo = await Usuario.cadastrarUsuario(novoUsuario);
-  console.log(novo);
-
+async function main() {
   const logar = await Usuario.logarUsuario(login);
  }
 

@@ -5,6 +5,10 @@ import Carrinho from "../Database/Api_Carrinho.js";
 const dadosDosCards = await Produtos.mostrarProdutosPublicos();
 const dataPrivada = await Produtos.mostrarProdutosPrivados();
 
+
+
+let contador = 0
+
 async function mostrarProdutos(filto) {
   let arr = [];
   if (filto !== undefined) {
@@ -111,10 +115,16 @@ function filtrar(event) {
   return item;
 }
 
-let itensCarrinho = await Carrinho.listarCarrinho();
+
+
+
 
 class MostrarCarrinhoLogado {
+  
   static async mostrarCarrinhoLogado() {
+
+    let itensCarrinho = await Carrinho.listarCarrinho()
+
     const corpoDoCarrinho = document.getElementById("corpoDoCarrinho");
     let arrDequantidade = [];
     let arrPrecoTotal = 0;
@@ -147,7 +157,7 @@ class MostrarCarrinhoLogado {
       buttonDeletar.addEventListener("click", async (event) => {
         event.preventDefault();
         await Carrinho.removerDoCarrinho(buttonDeletar.value);
-        window.location.reload();
+        // window.location.reload();
       });
 
       img.src = itensCarrinho[i].products.imagem;
@@ -184,7 +194,7 @@ class MostrarCarrinhoLogado {
     const parteDeBaixoDoCarrinho = document.getElementById(
       "parteDeBaixoDoCarrinho"
     );
-
+    parteDeBaixoDoCarrinho.innerHTML = "";
     const divQuantidade = document.createElement("div");
     const divpreco = document.createElement("div");
     const quantidadeTotal = document.createElement("p");
@@ -212,47 +222,7 @@ class MostrarCarrinhoLogado {
   }
 }
 
-// async function mostrarCarrinhoLogado(){
-// const corpoDoCarrinho = document.getElementById("corpoDoCarrinho")
-// corpoDoCarrinho.innerHTML = ""
-// for (let i = 0; i < itensCarrinho.length; i++) {
-//     // console.log(itensCarrinho[i].products.id)
 
-//     const divItenCarrinho = document.createElement("div")
-//     divItenCarrinho.classList = "divItenCarrinho"
-//     const divItenCarrinhointerenal = document.createElement("div")
-//     // divItenCarrinhointerenal.classList = "divItenCarrinhointerenal"
-//     const img = document.createElement("img")
-//     img.classList = "imgCarrinho"
-//     const h3 = document.createElement("h3")
-//     const preco = document.createElement("p")
-//     const p = document.createElement("p")
-//     const buttonDeletar = document.createElement("p")
-//     buttonDeletar.classList = "buttonDeletar"
-//     buttonDeletar.value = itensCarrinho[i].products.id
-//     buttonDeletar.addEventListener("click",() =>{
-//         Carrinho.removerDoCarrinho(buttonDeletar.value)
-//         divItenCarrinho.innerHTML = ""
-
-//     })
-
-//     buttonDeletar.innerHTML = "&#128465;"
-//     preco.innerText = itensCarrinho[i].products.preco
-//     h3.innerText = itensCarrinho[i].products.nome
-//     img.src = itensCarrinho[i].products.imagem
-
-//     corpoDoCarrinho.appendChild(divItenCarrinho)
-//     divItenCarrinho.appendChild(divItenCarrinhointerenal)
-//     divItenCarrinho.appendChild(img)
-//     divItenCarrinho.appendChild(h3)
-//     divItenCarrinho.appendChild(p)
-//     divItenCarrinho.appendChild(preco)
-//     divItenCarrinho.appendChild(buttonDeletar)
-
-// }
-
-// }
-
-MostrarCarrinhoLogado.mostrarCarrinhoLogado();
+let teste = MostrarCarrinhoLogado.mostrarCarrinhoLogado()
 
 export default MostrarCarrinhoLogado;

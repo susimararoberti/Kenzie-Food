@@ -21,9 +21,8 @@ class Produtos {
     const produtos = await fetch(URL, {
       method: "GET",
       headers: {
-        "Authorization": `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
+        "Authorization": `Bearer ${token}`
+      }
     })
       .then((resposta) => resposta.json())
       .then((data) => data);

@@ -28,7 +28,7 @@ class Usuario {
     })
       .then((resposta) => resposta.json())
       .then((resposta) => {
-        localStorage.setItem("Token", `${JSON.stringify(resposta)}`);
+        localStorage.setItem("Token", resposta);
         console.log(resposta); //remover
       })
       .catch((error) => console.error(error));

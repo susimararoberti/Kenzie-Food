@@ -28,8 +28,7 @@ class ListarProdutos {
         await Carrinho.adicionarAoCarrinho({
           product_id: btnConpra.id,
         });
-        window.location.reload();
-        // MostrarCarrinhoLogado.mostrarCarrinhoLogado()
+        await MostrarCarrinhoLogado.mostrarCarrinhoLogado()
       });
 
       img.src = data[i].imagem;

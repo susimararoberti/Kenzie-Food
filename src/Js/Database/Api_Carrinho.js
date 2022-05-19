@@ -1,3 +1,4 @@
+
 class Carrinho {
   static baseURL = "https://api-kenzie-food.herokuapp.com";
 
@@ -23,15 +24,16 @@ class Carrinho {
     const novo = await fetch(`${URL}`, {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${token}`,
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
       },
       body: JSON.stringify(dados)
     })
-      .then((resposta) => resposta.json())
-      .then((resposta) => resposta)
-      .catch((error) => console.error(error));
-
+    .then((resposta) => resposta.json())
+    .then((resposta) => resposta)
+    .catch((error) => console.error(error));
+// console.log(novo)
+// console.log(token)
     return novo;
   }
 
@@ -48,3 +50,5 @@ class Carrinho {
 }
 
 export default Carrinho;
+
+console.log(await Carrinho.listarCarrinho())
