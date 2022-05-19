@@ -58,9 +58,5 @@ class Dashboard {
 
 
 
-function deletarProduto(event){
-    let target = event.target
-    Produtos.deletarProduto(target.id)
-}
 
 
