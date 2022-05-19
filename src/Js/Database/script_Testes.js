@@ -9,14 +9,11 @@ const novoUsuario = {
 };
 
 const login = {
-  email: "juju@email.com",
-  password: "98765",
+  email: "kenzieABC@email.com",
+  password: "123",
 };
 
 async function main() {
-  //   const novo = await Usuario.cadastrarUsuario(novoUsuario);
-  //   console.log(novo);
-
   const logar = await Usuario.logarUsuario(login);
 }
 
