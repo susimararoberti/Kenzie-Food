@@ -18,6 +18,7 @@ class Usuario {
   }
 
   static async logarUsuario(dados) {
+    debugger;
     const URL = `${this.baseURL}/auth/login`;
     await fetch(URL, {
       method: "POST",
@@ -28,7 +29,7 @@ class Usuario {
     })
       .then((resposta) => resposta.json())
       .then((resposta) => {
-        localStorage.setItem("Token", resposta);
+        localStorage.setItem("Token", `${JSON.stringify(resposta)}`);
         console.log(resposta); //remover
       })
       .catch((error) => console.error(error));
