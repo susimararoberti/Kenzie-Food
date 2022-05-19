@@ -117,10 +117,10 @@ function filtrar(event) {
 
 
 
-
+ 
 
 class MostrarCarrinhoLogado {
-  
+
   static async mostrarCarrinhoLogado() {
 
     let itensCarrinho = await Carrinho.listarCarrinho()
