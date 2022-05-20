@@ -29,7 +29,11 @@
             src="../images/pesquisa (2).png"
             alt="pesquisa"
           />
-          <input type="text" placeholder="Pesquisar por produto" />
+          <input
+            id="campoPesquisa"
+            type="text"
+            placeholder="Pesquisar por produto"
+          />
         </div>
         <button id="home" class="pesquisa--button texto" type="button">
           <img class="button--img--home" src="../images/home.png" alt="user" />
@@ -45,23 +49,23 @@
     </header>
     <main>
       <section class="navegacao">
-        <nav class="navegacao--categorias">
+        <nav id="categorias" class="navegacao--categorias">
           <button class="categorias--selecionado" id="todos">Todos</button>
-          <button class="categorias categorias--panificadora">
+          <button id="panificadora" class="categorias categorias--panificadora">
             <img
               class="panificadora--img"
               src="../images/pao-.png"
               alt="Pão"
             />Panificadora
           </button>
-          <button class="categorias categorias--frutas">
+          <button id="frutas" class="categorias categorias--frutas">
             <img
               class="frutas--img"
               src="../images/frutas-.png"
               alt="Frutas"
             />Frutas
           </button>
-          <button class="categorias categorias--bebidas">
+          <button id="bebidas" class="categorias categorias--bebidas">
             <img
               class="bebidas--img"
               src="../images/bebida.png"
@@ -83,9 +87,10 @@
           <h3 class="tabela--coluna4">Ações</h3>
         </div>
 
-        <ul class="lista">
+        <ul id="ul" class="lista">
          
         </ul>
+
       </section>
     </main>
 
@@ -101,7 +106,7 @@
               <label for="descricao">Descrição</label>
               <input class="input--descricao" type="text" name="descricao" id="descricao">
               <label for="categorias">Categorias</label>    
-              <ul id="categorias">
+              <ul id="categorias--Modal-Criar">
                   <li>Panificadora</li>
                   <li>Frutas</li>
                   <li>Bebidas</li>
@@ -121,28 +126,21 @@
             <small>Editar Produto</small> 
             <button class="Modal--Editar--Fechar">x</button>
         </div>
-
         <form action="" class="form--Editar">
             <label for="nome--Editar">Nome do Produto</label>
             <input class="input--nome" type="text" name="nome" id="nome--Editar">
-
             <label for="descricao--Editar">Descrição</label>
             <input class="input--descricao" type="text" name="descricao" id="descricao--Editar">
-
-            <label for="categorias--Editar">Categorias</label>
-            
+            <label for="categorias--Editar">Categorias</label>   
             <ul id="categorias--Editar">
                 <li>Panificadora</li>
                 <li>Frutas</li>
                 <li>Bebidas</li>
             </ul>
-
             <label for="preco--Editar">Valor do Produto</label>
             <input class="input--preco" type="text" name="preco" id="preco--Editar">
-
             <label for="image--Editar">Link da Imagem</label>
             <input class="input--link" type="text" name="image" id="image--Editar">
-
             <div class="div--Footer--Editar"><button class="Modal--Editar--Fechar">Excluir</button> <input class="Footer--Editar" type="submit" value="Editar Produto"></div>           
         </form>
      </div>
@@ -153,5 +151,6 @@
     <script type="module" src="./../Js/Database/Api_Produtos.js"></script>
     <script type="module" src="./../Js/Database/Api_Usuario.js"></script>
     <script type="module" src="./../Js/Controller/dashboardController.js"></script>
+    <script type="module" src="./../Js/Models/dashboard.js"></script>
   </body>
 </html>
