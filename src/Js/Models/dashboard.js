@@ -7,7 +7,7 @@ class Logout {
   static deslogarUsuario(event) {
     event.preventDefault();
     localStorage.clear();
-    window.location.href = "../Pages/Login.html";
+    window.location.href = "../../index.html";
   }
 }
 
@@ -21,7 +21,7 @@ class Home {
 
   static trocarParaHome(event) {
     event.preventDefault();
-    window.location.href = "../../../index.html";
+    window.location.href = "../../index.html";
   }
 }
 
