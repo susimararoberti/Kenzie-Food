@@ -31,20 +31,29 @@
           />
           <input id="buscar" type="text" placeholder="Pesquisar por produto" />
         </div>
-        <button id="Login" class="pesquisa--button" type="button">
-          <img
-            class="button--img--login"
-            src="./src/images/user.png"
-            alt="Login"
-          />
-        </button>
-        <button id="Logout" class="pesquisa--button" type="button">
-          <img
-            class="button--img--logout"
-            src="./src/images/logout.png"
-            alt="Logout"
-          />
-        </button>
+        <nav class="pesquisa--navegacao">
+          <!-- <button id="Login" class="pesquisa--button" type="button"></button> -->
+          <ul class="navegacao--opcoes">
+            <li class="opcoes--lista">
+              <img
+                class="button--img"
+                src="./src/images/user.png"
+                alt="Login"
+              />
+              <ul>
+                <li id="login-menu">
+                  <a href="./src/Pages/Login.html">Login</a>
+                </li>
+
+                <li id="logout-menu">Logout</li>
+
+                <li id="dashboard-menu">
+                  <a href="./src/Pages/DashBoard.html">Dashboard</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
       </div>
     </header>
     <main>
@@ -88,6 +97,7 @@
       </section>
     </main>
     <script type="module" src="./src/Js/Database/script_Testes.js"></script>
+    <script type="module" src="./src/Js/Models/navegacao_pages.js"></script>
     <script type="module" src="./src/Js/Controller/indexControler.js"></script>
     <script type="module" src="./src/Js/Database/Api_Produtos.js"></script>
     <script type="module" src="./src/Js/Models/listarProdutos.js"></script>

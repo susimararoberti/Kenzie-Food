@@ -23,6 +23,17 @@ class Login {
       alert(error);
     }
   }
+
+  static buttonRetornar() {
+    const botaoAnonimo = document.getElementById("retornarHome");
+    botaoAnonimo.addEventListener("click", this.retornaHome);
+  }
+
+  static retornaHome(event) {
+    event.preventDefault();
+    window.location.href = "../../index.html";
+  }
 }
 
 Login.buttonLogar();
+Login.buttonRetornar();
