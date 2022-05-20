@@ -51,4 +51,4 @@ class Carrinho {
 
 export default Carrinho;
 
-console.log(await Carrinho.listarCarrinho())
+// console.log(await Carrinho.listarCarrinho())

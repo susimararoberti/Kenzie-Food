@@ -121,73 +121,116 @@ function filtrar(event) {
 
 class MostrarCarrinhoLogado {
 
-  static async mostrarCarrinhoLogado() {
+  static async mostrarCarrinhoLogado(arr) {
 
-    let itensCarrinho = await Carrinho.listarCarrinho()
+    let itensCarrinho = await arr
 
     const corpoDoCarrinho = document.getElementById("corpoDoCarrinho");
-    let arrDequantidade = [];
+    let arrDequantidade = 0;
     let arrPrecoTotal = 0;
     // console.log(corpoDoCarrinho)
     // console.log(itensCarrinho[0].quantity)
     corpoDoCarrinho.innerHTML = "";
-    for (let i = 0; i < itensCarrinho.length; i++) {
-      arrDequantidade.push(itensCarrinho[i].quantity);
+    // if(localStorage.getItem("Token") !== ""){
+      
+      for (let i = 0; i < itensCarrinho.length; i++) {
 
-      for (let j = 0; j < itensCarrinho[i].quantity; j++) {
-        arrPrecoTotal += itensCarrinho[i].products.preco;
+       if(localStorage.getItem("Token") !== ""){
+        arrPrecoTotal += itensCarrinho[i].products.preco * itensCarrinho[i].quantity;
+        arrDequantidade += itensCarrinho[i].quantity;
+       }
+       else{
+        arrPrecoTotal += itensCarrinho[i].preco
+        arrDequantidade ++
+       }
+  
+        const divItenCarrinho = document.createElement("li");
+        const img = document.createElement("img");
+        const divTexto = document.createElement("div");
+        const h3 = document.createElement("h3");
+        const categoria = document.createElement("span");
+        const preco = document.createElement("p");
+        const divDelete = document.createElement("div");
+        const quantidade = document.createElement("p");
+        const buttonDeletar = document.createElement("button");
+  
+        divItenCarrinho.classList = "divItenCarrinho";
+        img.classList = "imgCarrinho";
+        divTexto.classList = "carrinho--info";
+        divDelete.classList = "carrinho--delete";
+        buttonDeletar.classList = "delete--button";
+
+        if(localStorage.getItem("Token") !== ""){
+        buttonDeletar.value = itensCarrinho[i].products.id;
+        buttonDeletar.addEventListener("click", async (event) => {
+          event.preventDefault();
+          await Carrinho.removerDoCarrinho(buttonDeletar.value);
+          MostrarCarrinhoLogado.mostrarCarrinhoLogado(await Carrinho.listarCarrinho())
+          // window.location.reload();
+        });
+
+
+          img.src = itensCarrinho[i].products.imagem;
+          h3.innerText = itensCarrinho[i].products.nome;
+          categoria.innerText = itensCarrinho[i].products.categoria;
+          preco.innerText = "R$ " + itensCarrinho[i].products.preco;
+          quantidade.innerHTML = itensCarrinho[i].quantity;
+          buttonDeletar.innerHTML = "&#128465;";
+
+        }
+        else{
+        buttonDeletar.id = arr[i].id
+        buttonDeletar.addEventListener("click", async () => {
+        let arrT = []
+        for (let i = 0; i < arr.length; i++) {
+         if(arr[i].id !== buttonDeletar.id){
+          arrT.push(arr[i])
+         } 
+        }
+        arr = arrT
+        MostrarCarrinhoLogado.mostrarCarrinhoLogado(arr)
+        localStorage.setItem("carrinhoLocal",`${JSON.stringify(arrT)}`)
+        console.log(JSON.parse(localStorage.carrinhoLocal))
+        });
+
+          img.src = itensCarrinho[i].imagem;
+          h3.innerText = itensCarrinho[i].nome;
+          categoria.innerText = itensCarrinho[i].categoria;
+          preco.innerText = "R$ " + itensCarrinho[i].preco;
+          quantidade.innerHTML = ""
+          buttonDeletar.innerHTML = "&#128465;";
+        }
+  
+
+  
+        divItenCarrinho.appendChild(img);
+        divTexto.appendChild(h3);
+        divTexto.appendChild(categoria);
+        divTexto.appendChild(preco);
+        divDelete.appendChild(quantidade);
+        divDelete.appendChild(buttonDeletar);
+        divItenCarrinho.appendChild(divTexto);
+        divItenCarrinho.appendChild(divDelete);
+        corpoDoCarrinho.appendChild(divItenCarrinho);
+      }
+    
+      if(localStorage.getItem("Token") !== ""){
+          await MostrarCarrinhoLogado.atualizarPrecoCarrinhoLogado(
+            arrDequantidade,
+            arrPrecoTotal
+          );
+      }
+      else{
+        await MostrarCarrinhoLogado.atualizarPrecoCarrinhoLogado(arrDequantidade, arrPrecoTotal)
       }
 
-      const divItenCarrinho = document.createElement("li");
-      const img = document.createElement("img");
-      const divTexto = document.createElement("div");
-      const h3 = document.createElement("h3");
-      const categoria = document.createElement("span");
-      const preco = document.createElement("p");
-      const divDelete = document.createElement("div");
-      const quantidade = document.createElement("p");
-      const buttonDeletar = document.createElement("button");
 
-      divItenCarrinho.classList = "divItenCarrinho";
-      img.classList = "imgCarrinho";
-      divTexto.classList = "carrinho--info";
-      divDelete.classList = "carrinho--delete";
-      buttonDeletar.classList = "delete--button";
-      buttonDeletar.value = itensCarrinho[i].products.id;
-      buttonDeletar.addEventListener("click", async (event) => {
-        event.preventDefault();
-        await Carrinho.removerDoCarrinho(buttonDeletar.value);
-        // window.location.reload();
-      });
 
-      img.src = itensCarrinho[i].products.imagem;
-      h3.innerText = itensCarrinho[i].products.nome;
-      categoria.innerText = itensCarrinho[i].products.categoria;
-      preco.innerText = "R$ " + itensCarrinho[i].products.preco;
-      quantidade.innerHTML = itensCarrinho[i].quantity;
-      buttonDeletar.innerHTML = "&#128465;";
+    // console.log(arr[0].preco)
 
-      divItenCarrinho.appendChild(img);
-      divTexto.appendChild(h3);
-      divTexto.appendChild(categoria);
-      divTexto.appendChild(preco);
-      divDelete.appendChild(quantidade);
-      divDelete.appendChild(buttonDeletar);
-      divItenCarrinho.appendChild(divTexto);
-      divItenCarrinho.appendChild(divDelete);
-      corpoDoCarrinho.appendChild(divItenCarrinho);
-    }
 
-    // console.log(arrPrecoTotal)
 
-    let quantidadeTotal = arrDequantidade.reduce((a, b) => {
-      return a + b;
-    });
 
-    await MostrarCarrinhoLogado.atualizarPrecoCarrinhoLogado(
-      quantidadeTotal,
-      arrPrecoTotal
-    );
   }
 
   static async atualizarPrecoCarrinhoLogado(quantidade, preco) {
@@ -222,7 +265,22 @@ class MostrarCarrinhoLogado {
   }
 }
 
+  if(localStorage.getItem("Token") !== ""){
+    MostrarCarrinhoLogado.mostrarCarrinhoLogado(await Carrinho.listarCarrinho())
+  }
 
-let teste = MostrarCarrinhoLogado.mostrarCarrinhoLogado()
+// let teste = MostrarCarrinhoLogado.mostrarCarrinhoLogado()
+
+// console.log(localStorage)
+
+function CarrinhoOFFLocal(data){
+  let arrDeProdutos = []
+  let carrinhoStr = JSON.parse((localStorage.getItem("carrinhoLocal")))
+  if(localStorage.getItem("carrinhoLocal") == ""){
+    arrDeProdutos.push(data)
+    localStorage.setItem("carrinhoLocal",`${JSON.stringify(arrDeProdutos)}`)
+  }
+  
+}
 
 export default MostrarCarrinhoLogado;

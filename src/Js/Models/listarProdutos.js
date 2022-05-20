@@ -1,10 +1,10 @@
 import Carrinho from "../Database/Api_Carrinho.js";
 import MostrarCarrinhoLogado from "../Controller/indexControler.js";
-
+let arrDeProdutosOFF = []
 class ListarProdutos {
   static async listarProdutos(data) {
     let arr = [];
-    // console.log(data[0].id)
+    // console.log(data[0])
     for (let i = 0; i < data.length; i++) {
       // console.log(data[i].id)
       arr.push(data[i]);
@@ -24,12 +24,25 @@ class ListarProdutos {
 
       btnConpra.classList = "footer--add";
       btnConpra.id = data[i].id;
-      btnConpra.addEventListener("click", async function () {
-        await Carrinho.adicionarAoCarrinho({
-          product_id: btnConpra.id,
+      
+
+      if(localStorage.getItem("Token") !== ""){
+        btnConpra.addEventListener("click", async function () {
+          await Carrinho.adicionarAoCarrinho({
+            product_id: btnConpra.id,
+          });
+          await MostrarCarrinhoLogado.mostrarCarrinhoLogado(await Carrinho.listarCarrinho())
         });
-        await MostrarCarrinhoLogado.mostrarCarrinhoLogado()
-      });
+      }
+      else{
+        btnConpra.addEventListener("click", async function () {  
+          arrDeProdutosOFF.push(data[i])
+          await MostrarCarrinhoLogado.mostrarCarrinhoLogado(arrDeProdutosOFF)
+          
+          }
+        );
+      }
+
 
       img.src = data[i].imagem;
       titulo.innerText = data[i].nome;
