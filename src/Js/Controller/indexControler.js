@@ -33,7 +33,6 @@ async function mostrarProdutos(filto) {
   await ListarProdutos.listarProdutos(dadosDosCards);
 }
 
-// console.log(dadosDosCards)
 mostrarProdutos();
 
 const buscar = document.getElementById("buscar");
@@ -66,7 +65,6 @@ function buscarProdutos() {
           .toLowerCase()
           .includes(buscar.value.toLowerCase) == true
       ) {
-        // console.log("entrou no if");
         dataBusca.push(dadosDosCards[i]);
       }
     }
@@ -100,7 +98,6 @@ btnFrutas.addEventListener("click", filtrar);
 btnBebidas.addEventListener("click", filtrar);
 
 function filtrar(event) {
-  // event.target.style.backgroundColor = "blue";
   const item = event.target.id;
   if (item !== "Todos") {
     vitrine.innerHTML = "";
@@ -118,7 +115,7 @@ function hoverCategorias() {
   navCategorias.addEventListener("click", (event) => {
     let categorias = navCategorias.querySelectorAll("button");
     let itemclicado = event.target;
-    if (itemclicado.id != "categorias") {
+    if (itemclicado.id != "categorias" && itemclicado.classList[0] != "panificadora--img" && itemclicado.classList[0] != "frutas--img" && itemclicado.classList[0] != "bebidas--img") {
       categorias.forEach((itemLi) => {
         itemLi.classList.remove("categorias--selecionado");
       });
@@ -138,10 +135,8 @@ class MostrarCarrinhoLogado {
     const corpoDoCarrinho = document.getElementById("corpoDoCarrinho");
     let arrDequantidade = 0;
     let arrPrecoTotal = 0;
-    // console.log(corpoDoCarrinho)
-    // console.log(itensCarrinho[0].quantity)
     corpoDoCarrinho.innerHTML = "";
-    // if(localStorage.getItem("Token") !== ""){
+ 
       
       for (let i = 0; i < itensCarrinho.length; i++) {
 
@@ -200,7 +195,6 @@ class MostrarCarrinhoLogado {
         arr = arrT
         MostrarCarrinhoLogado.mostrarCarrinhoLogado(arr)
         localStorage.setItem("carrinhoLocal",`${JSON.stringify(arrT)}`)
-        console.log(JSON.parse(localStorage.carrinhoLocal))
         });
 
           img.src = itensCarrinho[i].imagem;
@@ -233,13 +227,6 @@ class MostrarCarrinhoLogado {
       else{
         await MostrarCarrinhoLogado.atualizarPrecoCarrinhoLogado(arrDequantidade, arrPrecoTotal)
       }
-
-
-
-    // console.log(arr[0].preco)
-
-
-
 
   }
 
@@ -278,10 +265,6 @@ class MostrarCarrinhoLogado {
   if(localStorage.getItem("Token") !== ""){
     MostrarCarrinhoLogado.mostrarCarrinhoLogado(await Carrinho.listarCarrinho())
   }
-
-// let teste = MostrarCarrinhoLogado.mostrarCarrinhoLogado()
-
-// console.log(localStorage)
 
 function CarrinhoOFFLocal(data){
   let arrDeProdutos = []

@@ -4,9 +4,7 @@ let arrDeProdutosOFF = []
 class ListarProdutos {
   static async listarProdutos(data) {
     let arr = [];
-    // console.log(data[0])
     for (let i = 0; i < data.length; i++) {
-      // console.log(data[i].id)
       arr.push(data[i]);
       const vitrine = document.getElementById("vitrine");
       const gerarCard = document.createElement("div");

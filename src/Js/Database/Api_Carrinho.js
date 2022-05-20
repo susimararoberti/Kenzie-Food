@@ -32,8 +32,6 @@ class Carrinho {
     .then((resposta) => resposta.json())
     .then((resposta) => resposta)
     .catch((error) => console.error(error));
-// console.log(novo)
-// console.log(token)
     return novo;
   }
 
@@ -50,5 +48,3 @@ class Carrinho {
 }
 
 export default Carrinho;
-
-// console.log(await Carrinho.listarCarrinho())

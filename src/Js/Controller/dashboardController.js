@@ -1,6 +1,6 @@
 import Produtos  from "./../Database/Api_Produtos.js"
 
-const produtosPrivados = await Produtos.mostrarProdutosPrivados()
+const produtosPrivadoss = await Produtos.mostrarProdutosPrivados()
 
 const ul = document.getElementsByClassName("lista")[0]
 
@@ -53,14 +53,11 @@ class Dashboard {
                 const filtro = produtosPrivados.filter((e)=> e.id == editar.classList[1])[0]
                 dadosEditar(filtro.nome,filtro.descricao,filtro.categoria,filtro.preco,filtro.imagem,id)
             })
-
-
             deletar.addEventListener("click", (evt)=> {
                 evt.preventDefault
                 deletarProdutos(deletar.id)
                 }
             )
-
             li.appendChild(div)
             div.appendChild(img)
             div.appendChild(nome)
@@ -78,10 +75,11 @@ class Dashboard {
     }
 }
 
-Dashboard.inicializarTemplate(produtosPrivados)
+Dashboard.inicializarTemplate(produtosPrivadoss)
 
 
 async function captarDados(){
+    let produtosPrivados = await Produtos.mostrarProdutosPrivados()
     
     let btn = document.getElementsByClassName("modal--Footer")[0]
     btn.addEventListener("click",async(evt)=>{
@@ -102,12 +100,9 @@ async function captarDados(){
         }
 
         let createProduto = await Produtos.criarProduto(produto)
-        Dashboard.inicializarTemplate(produtosPrivados)
-
+        await Dashboard.inicializarTemplate(produtosPrivados)
         const modalCriarProduto = document.getElementsByClassName("modal--Conteiner-NovoProduto")[0]
         modalCriarProduto.style.display = "none"
-
-
     })
 
 }
@@ -177,6 +172,7 @@ function fechaModalAbreModal(){
 
 
 async function dadosEditar(nome,descricao,categoria,valor,linkImg,id){
+    const produtosPrivados = await Produtos.mostrarProdutosPrivados()
     const  inpNome = document.getElementById("nome--Editar")
     const inpDescr = document.getElementById("descricao--Editar")
     const categorias = document.getElementById("categorias--Editar")
@@ -205,12 +201,11 @@ async function dadosEditar(nome,descricao,categoria,valor,linkImg,id){
        let teste =  Produtos.editarProduto(id,produto)
        
         Dashboard.inicializarTemplate(produtosPrivados)
-
         const modal = document.getElementsByClassName("modal--Conteiner-Editar")[0]
         modal.style.display = "none"
     })
 
-
+   
 
 }
 
@@ -234,6 +229,7 @@ async function dadosEditar(nome,descricao,categoria,valor,linkImg,id){
 
 async function deletarProdutos(id){
  await Produtos.deletarProduto(id)
+ const produtosPrivados = await Produtos.mostrarProdutosPrivados()
     await Dashboard.inicializarTemplate(produtosPrivados)
 }
 
