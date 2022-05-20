@@ -5,9 +5,7 @@ import Carrinho from "../Database/Api_Carrinho.js";
 const dadosDosCards = await Produtos.mostrarProdutosPublicos();
 const dataPrivada = await Produtos.mostrarProdutosPrivados();
 
-
-
-let contador = 0
+let contador = 0;
 
 async function mostrarProdutos(filto) {
   let arr = [];
@@ -39,6 +37,7 @@ async function mostrarProdutos(filto) {
 mostrarProdutos();
 
 const buscar = document.getElementById("buscar");
+const vitrine = document.getElementById("vitrine");
 
 function buscarProdutos() {
   vitrine.innerHTML = "";
@@ -90,7 +89,6 @@ function buscarProdutos() {
 
 buscarProdutos();
 
-// const vitrine = document.getElementById("vitrine");
 const btnTodos = document.getElementById("Todos");
 const btnPanificadora = document.getElementById("Panificadora");
 const btnFrutas = document.getElementById("Frutas");
@@ -115,15 +113,25 @@ function filtrar(event) {
   return item;
 }
 
-
-
- 
+function hoverCategorias() {
+  let navCategorias = document.getElementById("categorias");
+  navCategorias.addEventListener("click", (event) => {
+    let categorias = navCategorias.querySelectorAll("button");
+    let itemclicado = event.target;
+    if (itemclicado.id != "categorias") {
+      categorias.forEach((itemLi) => {
+        itemLi.classList.remove("categorias--selecionado");
+      });
+      itemclicado.classList.add("categorias--selecionado");
+      return itemclicado.innerText;
+    }
+  });
+}
+hoverCategorias();
 
 class MostrarCarrinhoLogado {
-
   static async mostrarCarrinhoLogado() {
-
-    let itensCarrinho = await Carrinho.listarCarrinho()
+    let itensCarrinho = await Carrinho.listarCarrinho();
 
     const corpoDoCarrinho = document.getElementById("corpoDoCarrinho");
     let arrDequantidade = [];
@@ -222,7 +230,6 @@ class MostrarCarrinhoLogado {
   }
 }
 
-
-let teste = MostrarCarrinhoLogado.mostrarCarrinhoLogado()
+let teste = MostrarCarrinhoLogado.mostrarCarrinhoLogado();
 
 export default MostrarCarrinhoLogado;

@@ -29,7 +29,11 @@
             src="../images/pesquisa (2).png"
             alt="pesquisa"
           />
-          <input type="text" placeholder="Pesquisar por produto" />
+          <input
+            id="campoPesquisa"
+            type="text"
+            placeholder="Pesquisar por produto"
+          />
         </div>
         <button id="home" class="pesquisa--button texto" type="button">
           <img class="button--img--home" src="../images/home.png" alt="user" />
@@ -45,23 +49,23 @@
     </header>
     <main>
       <section class="navegacao">
-        <nav class="navegacao--categorias">
+        <nav id="categorias" class="navegacao--categorias">
           <button class="categorias--selecionado" id="todos">Todos</button>
-          <button class="categorias categorias--panificadora">
+          <button id="panificadora" class="categorias categorias--panificadora">
             <img
               class="panificadora--img"
               src="../images/pao-.png"
               alt="Pão"
             />Panificadora
           </button>
-          <button class="categorias categorias--frutas">
+          <button id="frutas" class="categorias categorias--frutas">
             <img
               class="frutas--img"
               src="../images/frutas-.png"
               alt="Frutas"
             />Frutas
           </button>
-          <button class="categorias categorias--bebidas">
+          <button id="bebidas" class="categorias categorias--bebidas">
             <img
               class="bebidas--img"
               src="../images/bebida.png"
@@ -83,34 +87,15 @@
           <h3 class="tabela--coluna4">Ações</h3>
         </div>
 
-        <ul class="lista">
-          <li class="lista--itens">
-            <div class="itens--nome">
-              <img
-                class="lista--img"
-                src="../images/panqueca.jpg"
-                alt="Panqueca de Frango"
-              />
-              <p class="lista--p">Panqueca de Frango</p>
-            </div>
-            <div class="itens--categoria"><span>Panificadora</span></div>
-            <div class="itens--descricao">
-              <p>Deliciosa panqueca com recheio de frango cremoso...</p>
-            </div>
-            <div class="itens--botoes">
-              <button class="botoes--acao">
-                <img src="../images/edit.png" alt="Editar" />
-              </button>
-              <button class="botoes--acao">
-                <img src="../images/delete.png" alt="Deletar" />
-              </button>
-            </div>
-          </li>
-        </ul>
+        <ul id="ul" class="lista"></ul>
       </section>
     </main>
     <script type="module" src="../Js/Database/script_Testes.js"></script>
     <script type="module" src="../Js/Database/Api_Usuario.js"></script>
     <script src="../Js/Models/dashboard.js"></script>
+    <script
+      type="module"
+      src="../Js/Controller/dashboardController.js"
+    ></script>
   </body>
 </html>
