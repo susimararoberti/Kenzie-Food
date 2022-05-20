@@ -51,16 +51,16 @@ class Produtos {
   static async editarProduto(idProduto, dados) {
     const URL = `${this.baseURL}/my/products`;
     const token = localStorage.getItem("Token");
-    const editar = await fetch(`${URL}/` + idProduto, {
+    const editar = await fetch(`${URL}/${idProduto}`, {
       method: "PATCH",
       headers: {
         "Authorization": `Bearer ${token}`,
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
-      body: JSON.stringify(dados),
+      body: JSON.stringify(dados)
     })
       .then((resposta) => resposta.json())
-      .then((resposta) => resposta)
+      .then((resposta) => console.log(resposta))
       .catch((error) => console.error(error));
 
     return editar;
@@ -72,8 +72,8 @@ class Produtos {
     const deletar = await fetch(`${URL}/` + idProduto, {
       method: "DELETE",
       headers: {
-       "Authorization": `Bearer ${token}`,
-      },
+       "Authorization": `Bearer ${token}`
+      }
     }).catch((error) => console.error(error));
   }
 }

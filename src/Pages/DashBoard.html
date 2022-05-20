@@ -84,33 +84,74 @@
         </div>
 
         <ul class="lista">
-          <li class="lista--itens">
-            <div class="itens--nome">
-              <img
-                class="lista--img"
-                src="../images/panqueca.jpg"
-                alt="Panqueca de Frango"
-              />
-              <p class="lista--p">Panqueca de Frango</p>
-            </div>
-            <div class="itens--categoria"><span>Panificadora</span></div>
-            <div class="itens--descricao">
-              <p>Deliciosa panqueca com recheio de frango cremoso...</p>
-            </div>
-            <div class="itens--botoes">
-              <button class="botoes--acao">
-                <img src="../images/edit.png" alt="Editar" />
-              </button>
-              <button class="botoes--acao">
-                <img src="../images/delete.png" alt="Deletar" />
-              </button>
-            </div>
-          </li>
+         
         </ul>
       </section>
     </main>
-    <script type="module" src="../Js/Database/script_Testes.js"></script>
-    <script type="module" src="../Js/Database/Api_Usuario.js"></script>
-    <script src="../Js/Models/dashboard.js"></script>
+
+    <div class="modal--Conteiner-NovoProduto">
+      <div class="modal--NovoProduto">
+          <div class="modal--Header">
+              <small>Cadastro de Produto</small> 
+              <button class="Modal--NovoProduto-Fecahr">x</button>
+          </div>
+          <form action="" class="form--Criar">
+              <label for="nome">Nome do Produto</label>
+              <input class="input--nome" type="text" name="nome" id="nome">
+              <label for="descricao">Descrição</label>
+              <input class="input--descricao" type="text" name="descricao" id="descricao">
+              <label for="categorias">Categorias</label>    
+              <ul id="categorias">
+                  <li>Panificadora</li>
+                  <li>Frutas</li>
+                  <li>Bebidas</li>
+              </ul>
+              <label for="preco">Valor do Produto</label>
+              <input class="input--preco" type="text" name="preco" id="preco">
+              <label for="image">Link da Imagem</label>
+              <input class="input--link" type="text" name="image" id="image">
+              <input class="modal--Footer" type="submit" value="Cadastrar Produto">
+          </form>
+       </div>
+  </div>
+
+  <div class="modal--Conteiner-Editar">
+    <div class="modal--Editar">
+        <div class="Editar--Header">
+            <small>Editar Produto</small> 
+            <button class="Modal--Editar--Fechar">x</button>
+        </div>
+
+        <form action="" class="form--Editar">
+            <label for="nome--Editar">Nome do Produto</label>
+            <input class="input--nome" type="text" name="nome" id="nome--Editar">
+
+            <label for="descricao--Editar">Descrição</label>
+            <input class="input--descricao" type="text" name="descricao" id="descricao--Editar">
+
+            <label for="categorias--Editar">Categorias</label>
+            
+            <ul id="categorias--Editar">
+                <li>Panificadora</li>
+                <li>Frutas</li>
+                <li>Bebidas</li>
+            </ul>
+
+            <label for="preco--Editar">Valor do Produto</label>
+            <input class="input--preco" type="text" name="preco" id="preco--Editar">
+
+            <label for="image--Editar">Link da Imagem</label>
+            <input class="input--link" type="text" name="image" id="image--Editar">
+
+            <div class="div--Footer--Editar"><button class="Modal--Editar--Fechar">Excluir</button> <input class="Footer--Editar" type="submit" value="Editar Produto"></div>           
+        </form>
+     </div>
+</div>
+
+
+
+    <script type="module" src="./../Js/Database/Api_Produtos.js"></script>
+    <script type="module" src="./../Js/Database/Api_Usuario.js"></script>
+    <script type="module" src="./../Js/Controller/dashboardController.js"></script>
   </body>
 </html>
