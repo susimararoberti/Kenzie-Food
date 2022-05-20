@@ -82,7 +82,7 @@ function buscarProdutos() {
     }
   }
   ListarProdutos.listarProdutos(dataBusca);
-  buscar.addEventListener("keypress", buscarProdutos);
+  buscar.addEventListener("keyup", buscarProdutos);
 }
 
 buscarProdutos();
