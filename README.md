@@ -155,4 +155,3 @@ Enviar um JSON com pelo menos uma das informações do produto a ser alterada, e
 Passar id do produto específico na url.
 Essa rota não precisa de um body, apenas do id na url.
 ### Resposta: Status 204 No Content
-
